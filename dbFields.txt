@@ -1,0 +1,2 @@
+guitar : id, name , price, fabrication date, genre, brand(object id)
+brand : id, name

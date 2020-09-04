@@ -1,17 +1,19 @@
 const express = require("express");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
-const indexRoute = require("./routes/index");
+const indexRoute = require("./routes/indexRoute");
+const brandRoute = require("./routes/brandRoute");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const { dbUri } = require("./dbCredentials");
 
 app.use(expressLayouts);
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 
 app.set("view engine", "ejs");
 app.set("layout", "layouts/layout");
 
-const dbUri =
-  "mongodb+srv://net-dreevo:7eTCOpbv9FfMxgb2@cluster0.1wky3.mongodb.net/node-auth";
 mongoose
   .connect(dbUri, {
     useNewUrlParser: true,
@@ -22,4 +24,5 @@ mongoose
 const db = mongoose.connection;
 db.on("error", (err) => console.error(error));
 
-app.use(indexRoute);
+app.use("/", indexRoute);
+app.use("/brands", brandRoute);
