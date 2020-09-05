@@ -1,16 +1,6 @@
 const Guitar = require("../models/guitar");
 const Brand = require("../models/brand");
-const path = require("path");
-const uploadPath = path.join("public", Guitar.modelImageBasePath);
-const fs = require("fs");
-const multer = require("multer");
-const imageMimeTypes = ["images/jpeg", "image/png", "images/gif"];
-const upload = multer({
-  dest: uploadPath,
-  fileFilter: (req, file, callback) => {
-    callback(null, imageMimeTypes.includes(file.mimetype));
-  },
-});
+const imageMimeTypes = ["image/jpeg", "image/png", "image/gif"];
 
 module.exports.guitars = async (req, res) => {
   let query = Guitar.find();
@@ -42,24 +32,20 @@ module.exports.newGuitar_get = async (req, res) => {
 };
 
 module.exports.newGuitar_post = async (req, res) => {
-  const fileName = req.file != null ? req.file.filename : null;
   const guitar = new Guitar({
     name: req.body.name,
     brand: req.body.brand,
     manufactureDate: new Date(req.body.manufactureDate),
     price: req.body.price,
     description: req.body.description,
-    modelImageName: fileName,
   });
+  saveModel(guitar, req.body.model);
   try {
     const newGuitar = await guitar.save();
     //res.redirect(`guitars/${newGuitar.id}`);
     res.redirect("guitars");
-  } catch {
-    if (guitar.modelImageName != null) {
-      removeGuitarImage(guitar.modelImageName);
-    }
-
+  } catch (err) {
+    console.log(err);
     renderNewPage(res, guitar, true);
   }
 };
@@ -80,10 +66,11 @@ async function renderNewPage(res, guitar, hasError = false) {
   }
 }
 
-function removeGuitarImage(fileName) {
-  fs.unlink(path.join(uploadPath, fileName), (err) => {
-    if (err) console.error(err);
-  });
+function saveModel(guitar, modelEncoded) {
+  if (modelEncoded == null) return;
+  const model = JSON.parse(modelEncoded);
+  if (model != null && imageMimeTypes.includes(model.type)) {
+    guitar.modelImage = new Buffer.from(model.data, "base64");
+    guitar.modelImageType = model.type;
+  }
 }
-
-module.exports.upload = upload;

@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const path = require("path");
-const modelImageBasePath = "uploads/guitarModels";
 
 const guitarSchema = new mongoose.Schema({
   name: {
@@ -24,7 +22,11 @@ const guitarSchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
-  modelImageName: {
+  modelImage: {
+    type: Buffer,
+    required: true,
+  },
+  modelImageType: {
     type: String,
     required: true,
   },
@@ -36,10 +38,11 @@ const guitarSchema = new mongoose.Schema({
 });
 
 guitarSchema.virtual("modelImagePath").get(function () {
-  if (this.modelImageName != null) {
-    return path.join("/", modelImageBasePath, this.modelImageName);
+  if (this.modelImage != null && this.modelImageType != null) {
+    return `data:${
+      this.modelImageType
+    };charset=utf-8;base64,${this.modelImage.toString("base64")}`;
   }
 });
 
 module.exports = mongoose.model("Guitar", guitarSchema);
-module.exports.modelImageBasePath = modelImageBasePath;
