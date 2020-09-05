@@ -1,1 +1,6 @@
-this is a guitarfy app
+<h2>Recently Added</h2>
+<div>
+  <% guitars.forEach(guitar => { %>
+  <img height="150" width="100" src="<%= guitar.modelImagePath %>" alt="" />
+  <%})%>
+</div>

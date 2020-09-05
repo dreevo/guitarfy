@@ -1,2 +1,3 @@
 node_modules
-dbCredentials
+dbFiles
+public/uploads

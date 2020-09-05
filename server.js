@@ -3,9 +3,10 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 const indexRoute = require("./routes/indexRoute");
 const brandRoute = require("./routes/brandRoute");
+const guitarRoute = require("./routes/guitarRoute");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const { dbUri } = require("./dbCredentials");
+const { dbUri } = require("./dbFiles/dbCredentials");
 
 app.use(expressLayouts);
 app.use(express.static("public"));
@@ -26,3 +27,4 @@ db.on("error", (err) => console.error(error));
 
 app.use("/", indexRoute);
 app.use("/brands", brandRoute);
+app.use("/guitars", guitarRoute);

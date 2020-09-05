@@ -1,0 +1,30 @@
+<h2>Search Guitars</h2>
+<form action="/guitars" method="GET">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name" value="<%= searchOptions.name %>" />
+  </div>
+  <div>
+    <label for="manufacturedAfter">Manufactured after</label>
+    <input
+      type="date"
+      name="manufacturedAfter"
+      value="<%= searchOptions.manufacturedAfter %>"
+    />
+  </div>
+  <div>
+    <label for="manufacturedBefore">Manufactured Before</label>
+    <input
+      type="date"
+      name="manufacturedBefore"
+      value="<%= searchOptions.manufacturedBefore %>"
+    />
+  </div>
+  <button type="submit">Search</button>
+</form>
+<br />
+<div>
+  <% guitars.forEach(guitar => { %>
+  <img height="150" width="100" src="<%= guitar.modelImagePath %>" alt="" />
+  <%})%>
+</div>
