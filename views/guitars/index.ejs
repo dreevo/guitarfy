@@ -25,6 +25,8 @@
 <br />
 <div>
   <% guitars.forEach(guitar => { %>
-  <img height="150" width="100" src="<%= guitar.modelImagePath %>" alt="" />
+  <a href="/guitars/<%= guitar.id %>">
+    <img height="150" width="100" src="<%= guitar.modelImagePath %>" alt="" />
+  </a>
   <%})%>
 </div>

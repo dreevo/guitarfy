@@ -1,0 +1,7 @@
+<h2>Edit Guitar</h2>
+
+<form action="/guitars/<%= guitar.id %>?_method=PUT" method="POST">
+  <%- include('./_formFields') %>
+  <a href="/guitars">Cancel</a>
+  <button type="submit">Update</button>
+</form>

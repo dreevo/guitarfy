@@ -42,28 +42,76 @@ module.exports.newGuitar_post = async (req, res) => {
   saveModel(guitar, req.body.model);
   try {
     const newGuitar = await guitar.save();
-    //res.redirect(`guitars/${newGuitar.id}`);
-    res.redirect("guitars");
+    res.redirect(`guitars/${newGuitar.id}`);
   } catch (err) {
     console.log(err);
     renderNewPage(res, guitar, true);
   }
 };
 
-async function renderNewPage(res, guitar, hasError = false) {
+module.exports.showGuitar = async (req, res) => {
   try {
-    const brands = await Brand.find({});
-    const params = {
-      brands,
-      guitar,
-    };
-    if (hasError) {
-      params.errorMessage = "Error creating guitar";
-    }
-    res.render("guitars/new", params);
+    const guitar = await Guitar.findById(req.params.id)
+      .populate("brand")
+      .exec();
+    res.render("guitars/show", { guitar });
   } catch {
-    res.redirect("/guitars");
+    res.redirect("/");
   }
+};
+
+module.exports.editGuitar = async (req, res) => {
+  try {
+    const guitar = await Guitar.findById(req.params.id);
+    renderEditPage(res, guitar);
+  } catch {
+    res.redirect("/");
+  }
+};
+
+module.exports.updateGuitar = async (req, res) => {
+  let guitar;
+  try {
+    guitar = await Guitar.findById(req.params.id);
+    guitar.name = req.body.name;
+    guitar.brand = req.body.brand;
+    guitar.manufactureDate = new Date(req.body.manufactureDate);
+    guitar.price = req.body.price;
+    guitar.description = req.body.description;
+    if (req.body.model != null && req.body.model != "") {
+      saveModel(guitar, req.body.model);
+    }
+    await guitar.save();
+    res.redirect(`/guitars/${guitar.id}`);
+  } catch (err) {
+    if (guitar != null) {
+      renderEditPage(res, guitar, true);
+    } else {
+      redirect("/");
+    }
+  }
+};
+
+module.exports.deleteGuitar = async (req, res) => {
+  let guitar;
+  try {
+    guitar = await Guitar.findById(req.params.id);
+    await guitar.remove();
+    res.redirect("/guitars");
+  } catch {
+    if (guitar != null) {
+      res.render("guitars/show", {
+        guitar,
+        errorMessage: "Could not remove guitar",
+      });
+    } else {
+      res.redirect("/");
+    }
+  }
+};
+
+async function renderNewPage(res, guitar, hasError = false) {
+  renderFormPage(res, guitar, "new", hasError);
 }
 
 function saveModel(guitar, modelEncoded) {
@@ -73,4 +121,27 @@ function saveModel(guitar, modelEncoded) {
     guitar.modelImage = new Buffer.from(model.data, "base64");
     guitar.modelImageType = model.type;
   }
+}
+
+async function renderFormPage(res, guitar, form, hasError = false) {
+  try {
+    const brands = await Brand.find({});
+    const params = {
+      brands,
+      guitar,
+    };
+    if (hasError) {
+      if (form === "edit") {
+        params.errorMessage = "Error updating guitar";
+      }
+      params.errorMessage = "Error creating guitar";
+    }
+    res.render(`guitars/${form}`, params);
+  } catch {
+    res.redirect("/guitars");
+  }
+}
+
+async function renderEditPage(res, guitar, hasError = false) {
+  renderFormPage(res, guitar, "edit", hasError);
 }
