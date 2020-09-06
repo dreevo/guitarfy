@@ -7,10 +7,12 @@ const guitarRoute = require("./routes/guitarRoute");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const { dbUri } = require("./dbFiles/dbCredentials");
+const methodOverride = require("method-override");
 
 app.use(expressLayouts);
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
+app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
 app.set("layout", "layouts/layout");

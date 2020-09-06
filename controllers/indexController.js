@@ -3,7 +3,8 @@ module.exports.home = async (req, res) => {
   let guitars;
   try {
     guitars = await Guitar.find().sort({ createdAt: "desc" }).limit(10).exec();
-  } catch {
+  } catch (err) {
+    console.log(err);
     books = [];
   }
   res.render("index", { guitars });

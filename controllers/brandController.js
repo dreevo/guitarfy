@@ -1,4 +1,5 @@
 const Brand = require("../models/brand");
+const Guitar = require("../models/guitar");
 
 module.exports.brands = async (req, res) => {
   let searchOptions = {};
@@ -23,9 +24,60 @@ module.exports.newBrand_post = async (req, res) => {
   });
   try {
     const newBrand = await brand.save();
-    //res.redirect(`brands/${newBrand.id}`);
-    res.redirect("brands");
+    res.redirect(`brands/${newBrand.id}`);
   } catch (err) {
     res.render("brands/new", { brand, errorMessage: "Error creating brand" });
+  }
+};
+
+module.exports.showBrand = async (req, res) => {
+  try {
+    const brand = await Brand.findById(req.params.id);
+    const guitars = await Guitar.find({ brand: brand.id }).limit(6).exec();
+    res.render("brands/show", { brand, guitarsByBrand: guitars });
+  } catch {
+    res.redirect("/");
+  }
+};
+
+module.exports.editBrand = async (req, res) => {
+  try {
+    const brand = await Brand.findById(req.params.id);
+    res.render("brands/edit", { brand });
+  } catch {
+    res.redirect("/brands");
+  }
+};
+
+module.exports.updateBrand = async (req, res) => {
+  let brand;
+  try {
+    brand = await Brand.findById(req.params.id);
+    brand.name = req.body.name;
+    await brand.save();
+    res.redirect(`/brands/${brand.id}`);
+  } catch (err) {
+    if (brand == null) {
+      res.redirect("/");
+    } else {
+      console.log(err);
+      res.render("brands/new", { brand, errorMessage: "Error updating brand" });
+    }
+  }
+};
+
+module.exports.deleteBrand = async (req, res) => {
+  let brand;
+  try {
+    brand = await Brand.findById(req.params.id);
+    await brand.remove();
+    res.redirect(`/brands`);
+  } catch (err) {
+    if (brand == null) {
+      res.redirect("/");
+    } else {
+      console.log(err);
+      res.redirect(`/brands/${brand.id}`);
+    }
   }
 };
