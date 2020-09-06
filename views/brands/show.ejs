@@ -1,4 +1,4 @@
-<h2><%= brand.name %></h2>
+<h2 class="page-header"><%= brand.name %></h2>
 <a href="authors/<%= brand.id %>/edit">Edit</a>
 <%- include('../partials/_deleteForm', {url: `/brands/${brand.id}`}) %> <%
 if(guitarsByBrand.length > 0){ %>
