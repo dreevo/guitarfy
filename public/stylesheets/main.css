@@ -2,6 +2,9 @@
 @import "shared/variables.css";
 @import "shared/header.css";
 @import "shared/buttons.css";
+@import "shared/form.css";
+@import "shared/brands.css";
+@import "shared/guitar.css";
 
 :root {
   font-family: "Orbitron", sans-serif;
@@ -36,4 +39,8 @@ body {
 .page-header {
   font-size: 2rem;
   font-weight: 500;
+}
+
+.errorMessage {
+  color: hsl(var(--color-danger-hue), 100%, 50%);
 }

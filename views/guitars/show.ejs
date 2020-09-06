@@ -1,9 +1,25 @@
 <h2 class="page-header"><%= guitar.name %></h2>
-<img src="<%=  guitar.modelImagePath%>" alt="" width="100" height="150" />
-<div>Brand: <%= guitar.brand.name %></div>
-<div>Manufacture Date: <%= guitar.manufactureDate.toDateString() %></div>
-<div>Price: <%= guitar.price %></div>
-<div>Description: <%= guitar.description %></div>
-<a href="/guitars/<%= guitar.id %>/edit">Edit</a>
-<%- include('../partials/_deleteForm', {url: `/guitars/${guitar.id}`}) %>
-<a href="/brands/<%= guitar.brand.id %>">View Brand</a>
+<div class="guitar-details">
+  <div>
+    <img src="<%=  guitar.modelImagePath%>" alt="" class="guitar-model" />
+    <div class="guitar-details-btn-grid">
+      <a class="btn btn-primary" href="/guitars/<%= guitar.id %>/edit">Edit</a>
+      <%- include('../partials/_deleteForm', {url: `/guitars/${guitar.id}`}) %>
+      <a
+        class="btn btn-primary guitar-details-brand-button"
+        href="/brands/<%= guitar.brand.id %>"
+        >View Brand</a
+      >
+    </div>
+  </div>
+  <div class="guitar-details-grid">
+    <div class="guitar-details-label">Brand:</div>
+    <div><%= guitar.brand.name %></div>
+    <div class="guitar-details-label">Manufacture Date:</div>
+    <div><%= guitar.manufactureDate.toDateString() %></div>
+    <div class="guitar-details-label">Price:</div>
+    <div><%= guitar.price %></div>
+    <div class="guitar-details-label">Description:</div>
+    <div><%= guitar.description %></div>
+  </div>
+</div>

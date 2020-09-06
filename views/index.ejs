@@ -1,8 +1,2 @@
 <h2 class="page-header">Recently Added</h2>
-<div>
-  <% guitars.forEach(guitar => { %>
-  <a href="/guitars/<%= guitar.id %>">
-    <img height="150" width="100" src="<%= guitar.modelImagePath %>" alt="" />
-  </a>
-  <%})%>
-</div>
+<%- include('partials/guitarGrid', {guitars }) %>

@@ -1,0 +1,13 @@
+<% guitarmodelClass= locals.large ? 'guitar-model-large' : 'guitar-model' %> <%
+guitarGridClass= locals.large ? 'guitar-grid-large' : '' %>
+<div class="guitar-grid <%= guitarGridClass %>">
+  <% guitars.forEach(guitar => { %>
+  <a href="/guitars/<%= guitar.id %>">
+    <img
+      class="guitar-model <%= guitarmodelClass %>"
+      src="<%= guitar.modelImagePath %>"
+      alt=""
+    />
+  </a>
+  <%})%>
+</div>

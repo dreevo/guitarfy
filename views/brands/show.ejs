@@ -1,10 +1,8 @@
 <h2 class="page-header"><%= brand.name %></h2>
-<a href="authors/<%= brand.id %>/edit">Edit</a>
-<%- include('../partials/_deleteForm', {url: `/brands/${brand.id}`}) %> <%
-if(guitarsByBrand.length > 0){ %>
-<h2>Guitars by Brand</h2>
-<% guitarsByBrand.forEach(guitar => { %>
-<a href="/guitars/<%= guitar.id %>">
-  <img height="150" width="100" src="<%= guitar.modelImagePath %>" alt="" />
-</a>
-<%})%> <% } %>
+<div class="btn-row">
+  <a class="btn btn-primary" href="/brands/<%= brand.id %>/edit">Edit</a>
+  <%- include('../partials/_deleteForm', {url: `/brands/${brand.id}`}) %>
+</div>
+<% if(guitarsByBrand.length > 0){ %>
+<h2 class="page-header">Guitars by Brand</h2>
+<%- include('../partials/guitarGrid', {guitars : guitarsByBrand}) %> <% } %>

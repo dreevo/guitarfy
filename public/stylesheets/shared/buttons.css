@@ -1,10 +1,10 @@
 :root {
   --color-button-primary-text: hsl(var(--color-base-hue), 100%, 20%);
-  --color-button-primary-background: hsl(var(--color-base-hue), 100%, 100%);
+  --color-button-primary-background: hsl(var(--color-base-hue), 100%, 83%);
   --color-border-button: black;
   --color-button-danger-text: black;
   --color-button-danger-background: hsl(var(--color-danger-hue), 100%, 83%);
-  --color-button-primary-background-dark: hsl(var(--color-base-hue), 100%, 95%);
+  --color-button-primary-background-dark: hsl(var(--color-base-hue), 100%, 73%);
   --color-button-danger-background-dark: hsl(
     var(--color-danger-hue),
     100%,
@@ -18,7 +18,7 @@
   border: 1px solid var(--color-border-button);
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-family: "Orbitron", sans-serif;
   cursor: pointer;
   text-decoration: none;

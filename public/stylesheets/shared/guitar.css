@@ -1,0 +1,62 @@
+:root {
+  --guitar-model-width: 200px;
+  --guitar-model-width-large: 325px;
+  --guitar-model-width-aspect-ratio: 0.75;
+}
+
+.guitar-model {
+  width: var(--guitar-model-width);
+  height: calc(
+    var(--guitar-model-width) / var(--guitar-model-width-aspect-ratio)
+  );
+}
+
+.guitar-model-large {
+  --guitar-model-width: var(--guitar-model-width-large);
+}
+
+.guitar-grid {
+  display: grid;
+  justify-content: center;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, var(--guitar-model-width));
+}
+
+.guitar-grid-large {
+  grid-template-columns: repeat(auto-fill, var(--guitar-model-width-large));
+}
+
+.guitar-details {
+  display: flex;
+}
+
+.guitar-details-label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  align-self: flex-start;
+}
+
+.guitar-details-grid {
+  display: grid;
+  align-content: flex-start;
+  align-items: center;
+  grid-gap: 1rem;
+  grid-template-columns: auto auto;
+}
+
+.guitar-details-btn-grid {
+  display: grid;
+  justify-items: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  grid-template-areas:
+    "edit delete"
+    "brand brand";
+  grid-gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.guitar-details-brand-button {
+  grid-area: brand;
+  justify-self: stretch;
+}
