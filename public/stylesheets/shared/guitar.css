@@ -9,6 +9,7 @@
   height: calc(
     var(--guitar-model-width) / var(--guitar-model-width-aspect-ratio)
   );
+  object-fit: contain;
 }
 
 .guitar-model-large {
@@ -20,6 +21,13 @@
   justify-content: center;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fill, var(--guitar-model-width));
+}
+
+.guitar-grid a {
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
 }
 
 .guitar-grid-large {
