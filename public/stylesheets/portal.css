@@ -25,6 +25,7 @@
   width: 6%;
   justify-self: end;
   cursor: pointer;
+  color: var(--color-text-light);
 }
 
 #logo,
@@ -77,8 +78,9 @@ nav {
 
 #logo {
   grid-column: 2/3;
-  font-size: 25px;
+  font-size: 18px;
   font-family: "Orbitron", sans-serif;
+  color: var(--color-text-light);
 }
 
 section {
@@ -104,7 +106,7 @@ section {
   position: absolute;
   top: 70%;
   left: 10%;
-  font-size: 70px;
+  font-size: 60px;
   transform: translate(-20%, -70%);
   font-family: "Orbitron", sans-serif;
   text-decoration: none;
