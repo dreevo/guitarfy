@@ -1,4 +1,5 @@
 const Guitar = require("../models/guitar");
+
 module.exports.home = async (req, res) => {
   let guitars;
   try {

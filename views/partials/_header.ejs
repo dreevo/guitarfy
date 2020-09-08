@@ -2,10 +2,17 @@
   <nav class="header-nav">
     <a class="header-title" href="/home">Guitarfy</a>
     <ul>
+      <% if(user){ %>
+      <li class="welcome"><%= user.email %></li>
+      <li class="logout">
+        <a class="btn btn-danger" href="/logout">Logout</a>
+      </li>
       <li><a href="/brands">Brands</a></li>
       <li><a href="/brands/new">Add Brand</a></li>
       <li><a href="/guitars">Guitars</a></li>
       <li><a href="/guitars/new">Add Guitar</a></li>
+
+      <% } %>
     </ul>
     <%- include('../partials/_hamburger') %>
   </nav>

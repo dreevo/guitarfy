@@ -80,3 +80,62 @@
   color: var(--color-text-light);
   font-size: inherit;
 }
+
+.form-auth {
+  width: 360px;
+  margin: 0 auto;
+  padding: 30px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background: var(--color-text-light);
+}
+
+.form-auth h2 {
+  font-size: 1.5em;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: black;
+  text-align: center;
+}
+
+.form-auth label {
+  color: black;
+}
+
+.form-auth-title {
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-size: var(--nav-title-font-size);
+  font-weight: var(--nav-title-font-weight);
+  z-index: 2;
+}
+
+.btn-auth {
+  border: 1px solid var(--color-border-button);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-family: "Orbitron", sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-auth-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-auth a {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.error {
+  color: hsl(var(--color-danger-hue), 100%, 50%);
+  margin: 10px 2px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
