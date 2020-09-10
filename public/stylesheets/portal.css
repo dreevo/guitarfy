@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 @import "shared/variables.css";
 * {
   margin: 0;
@@ -48,7 +48,7 @@
   align-content: center;
   text-align: center;
   transform: translateY(-100%);
-  font-family: "Orbitron", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .contact {
@@ -108,7 +108,7 @@ section {
   left: 10%;
   font-size: 60px;
   transform: translate(-20%, -70%);
-  font-family: "Orbitron", sans-serif;
+  font-family: "Poppins", sans-serif;
   text-decoration: none;
   color: white;
   z-index: 3;

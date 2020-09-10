@@ -47,7 +47,7 @@
   color: var(--color-text-light);
   font-size: 1rem;
   font-weight: normal;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Poppins", sans-serif;
   outline: none;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .filepond--root {
-  font-family: "Orbitron", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-bottom: 0;
 }
 
@@ -115,7 +115,7 @@
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Poppins", sans-serif;
   cursor: pointer;
   text-decoration: none;
   text-align: center;

@@ -50,6 +50,7 @@
   align-items: center;
   grid-gap: 1rem;
   grid-template-columns: auto auto;
+  margin-left: 2rem;
 }
 
 .guitar-details-btn-grid {
