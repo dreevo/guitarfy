@@ -7,10 +7,11 @@ const guitarRoute = require("./routes/guitarRoute");
 const authRoutes = require("./routes/authRoute");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const { dbUri } = require("./dbFiles/dbCredentials");
+const { DB_URI } = require("./dbFiles/keys");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const { checkUser } = require("./middleware/authMiddleware");
+const PORT = process.env.PORT || 3000;
 
 app.use(expressLayouts);
 app.use(express.json());
@@ -23,12 +24,12 @@ app.set("view engine", "ejs");
 app.set("layout", "layouts/layout");
 
 mongoose
-  .connect(dbUri, {
+  .connect(DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
-  .then((result) => app.listen(3000));
+  .then((result) => app.listen(PORT));
 const db = mongoose.connection;
 db.on("error", (err) => console.error(error));
 
